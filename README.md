@@ -9,7 +9,18 @@ There are few rules, which you must follow when develop some new Moodle plugin.
 This file will be executed each time when you run Moodle. So it's important to use it carefull:
 - There must be declared functions like _extends_navigation, which communicate with Moodle (for ex. change main website navigation)
 - Don't declare in lib.php your own functions and don't include other files (libs), write/include them on your locallib.php and other plugin's functions. 
+#### Global variables
+Dont declare global variables on the beginning of included file, its not necessary because they are still visible on that part of file. Make them global on the functions and class methods because without that you will have no access for example to $DB or $USER.
+```php
+// wrong
+global $USER, $DB;
 
+function getUserInfo(){
+  // good
+  global $DB, $USER;
+  $DB->get_record('user', array('id'=>$USER->id) );
+}
+```
 ## Moodle Events
 In the latest Moodle versions you should use [Event2](https://docs.moodle.org/dev/Event_2) to define your events.
 
@@ -17,6 +28,14 @@ In the latest Moodle versions you should use [Event2](https://docs.moodle.org/de
 - Format your SQL usign Moodle [SQL coding style](https://docs.moodle.org/dev/SQL_coding_style)
 - Optimize your query logic to exclude not needed tables from query (you can find examples of optimized queries on Intelliboard plugin - file externallib.php)
 - There are [100 Moodle queries](https://docs.moodle.org/29/en/ad-hoc_contributed_reports#User_Course_Completion) but be carefull, because a lot of them are not optimized. 
+
+## Work with Files
+
+### Get User Image
+```php
+
+```
+
 
 ## Other Moodle Tricks
 
