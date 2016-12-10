@@ -10,6 +10,9 @@ This file will be executed each time when you run Moodle. So it's important to u
 - There must be declared functions like _extends_navigation, which communicate with Moodle (for ex. change main website navigation)
 - Don't declare in lib.php your own functions and don't include other files (libs), write/include them on your locallib.php and other plugin's functions. 
 
+## Moodle Events
+In the latest Moodle versions you should use [Event2](https://docs.moodle.org/dev/Event_2) to define your events.
+
 ## Moodle Database Notes
 - Format your SQL usign Moodle [SQL coding style](https://docs.moodle.org/dev/SQL_coding_style)
 - Optimize your query logic to exclude not needed tables from query (you can find examples of optimized queries on Intelliboard plugin - file externallib.php)
