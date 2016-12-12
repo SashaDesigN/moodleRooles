@@ -21,6 +21,12 @@ function getUserInfo(){
   $DB->get_record('user', array('id'=>$USER->id) );
 }
 ```
+## Moodle Webservices
+
+### Configuration tips
+
+If you enabled webservices and enable protocols for your Moodle website via adminpanel, you still need to add API methods to you webservice, else they will not be accessible for your webservice clients.
+
 ## Moodle Events
 In the latest Moodle versions you should use [Event2](https://docs.moodle.org/dev/Event_2) to define your events.
 
@@ -49,6 +55,8 @@ public static function getUserImage($user){
         return $user;
 }
 ```
+Note\* if you want to display image of user outside Moodle website, you need to enable flag on adminpanel (to be extended)
+
 ### Check if file was really uploaded into filemanager
 ```php
 $usercontext = context_user::instance($USER->id);            
