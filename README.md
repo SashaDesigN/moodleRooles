@@ -49,7 +49,14 @@ public static function getUserImage($user){
         return $user;
 }
 ```
-
+### Check if file was really uploaded into filemanager
+```php
+$usercontext = context_user::instance($USER->id);            
+$draftfiles = $fs->get_area_files($usercontext->id, 'user', 'draft', $data['thumbnail'], 'id');
+if (count($draftfiles)){ 
+  
+}
+```
 
 ## Other Moodle Tricks
 
