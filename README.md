@@ -33,7 +33,21 @@ In the latest Moodle versions you should use [Event2](https://docs.moodle.org/de
 
 ### Get User Image
 ```php
-
+public static function getUserImage($user){
+        global $DB, $CFG;
+        if( $user->picture > 0 ){
+            $user_priofile_pic = $DB->get_record("files", array("id" => $user->picture ));
+            if($user_priofile_pic){
+                $imagepath = $user_priofile_pic->contextid."/user/".$user_priofile_pic->filearea."/".$user_priofile_pic->filename;
+                $user->image = $CFG->wwwroot."/pluginfile.php/".$imagepath;
+            } else {
+                $user->image = $CFG->wwwroot."/user/pix.php/0/f1.jpg";    
+            }
+        } else {
+            $user->image = $CFG->wwwroot."/user/pix.php/0/f1.jpg";
+        }
+        return $user;
+}
 ```
 
 
