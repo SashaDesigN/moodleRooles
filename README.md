@@ -73,3 +73,11 @@ You can use this simple code to convert UNIX timestamp to readable date:
 ```php
 userdate(timecreated, '%a, %d %b %Y, %I:%M %p');
 ```
+
+## Development Conventions
+
+### Email delivering
+For all developlent instances of Moodle we should disable email delivering by adding this code into config.php:
+```
+$CFG->noemailever = true;
+```
